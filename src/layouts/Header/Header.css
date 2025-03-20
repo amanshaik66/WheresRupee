@@ -1,0 +1,221 @@
+/* CSS Variables for Theming */
+:root {
+    --primary-color: #007bff;
+    --secondary-color: #0056b3;
+    --light-bg: #f8f9fa;
+    --dark-bg: #2d2d2d;
+    --text-light: #343a40;
+    --text-dark: #eaeaea;
+    --transition-speed: 0.3s;
+    --shadow-light: 0 6px 16px rgba(0, 0, 0, 0.05);
+    --shadow-dark: 0 6px 16px rgba(0, 0, 0, 0.3);
+    --gradient-accent: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  }
+  
+  /* Base Header Styles */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background: var(--light-bg);
+    color: var(--text-light);
+    border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+    font-family: 'Roboto', sans-serif;
+    box-shadow: var(--shadow-light);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease, box-shadow var(--transition-speed) ease, transform var(--transition-speed) ease;
+    animation: fadeIn 0.8s ease-out;
+  }
+  
+  /* Dark Mode Styles */
+  .header.theme-dark {
+    background: var(--dark-bg);
+    color: var(--text-dark);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: var(--shadow-dark), 0 0 15px rgba(0, 123, 255, 0.2);
+  }
+  
+  /* Scrolled State Styles */
+  .header.scrolled {
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(0);
+    opacity: 1;
+    transition: background-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease, opacity var(--transition-speed) ease;
+  }
+  
+  .header.theme-dark.scrolled {
+    background: rgba(40, 40, 40, 0.95);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Branding Section */
+  .branding {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .logo {
+    height: 44px;
+    transition: transform 0.4s ease, opacity 0.3s ease, filter 0.3s ease;
+    filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.2));
+  }
+  
+  .logo:hover {
+    transform: scale(1.1) rotate(3deg);
+    opacity: 0.9;
+    filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.3));
+  }
+  
+  .brand-name {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: inherit;
+    transition: color var(--transition-speed) ease, text-shadow var(--transition-speed) ease, transform var(--transition-speed) ease;
+  }
+  
+  .brand-name:hover {
+    color: var(--primary-color);
+    text-shadow: 0px 2px 4px rgba(0, 123, 255, 0.4);
+    transform: scale(1.05);
+  }
+  
+  .header.theme-dark .brand-name:hover {
+    color: var(--secondary-color);
+    text-shadow: 0px 2px 6px rgba(0, 86, 179, 0.6);
+  }
+  
+  /* Navigation/Controls Section */
+  .controls {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+  }
+  
+  /* Toggle Button Styles */
+  .toggle-button {
+    background: none;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    padding: 10px 25px;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease, transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .toggle-button:hover {
+    background-color: var(--primary-color);
+    color: var(--light-bg);
+    transform: scale(1.1) translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 123, 255, 0.4);
+  }
+  
+  .toggle-button:focus-visible {
+    outline: 3px solid var(--primary-color);
+    outline-offset: 2px;
+    box-shadow: 0 0 8px var(--primary-color);
+  }
+  
+  .header.theme-dark .toggle-button {
+    border-color: var(--secondary-color);
+    color: var(--secondary-color);
+  }
+  
+  .header.theme-dark .toggle-button:hover {
+    background-color: var(--secondary-color);
+    color: var(--dark-bg);
+  }
+  
+  /* Gradient Accent Below Header */
+  .header:after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--gradient-accent);
+    opacity: 0.7;
+    border-radius: 2px;
+    transition: opacity var(--transition-speed) ease, background-position var(--transition-speed) ease;
+  }
+  
+  .header:hover:after {
+    opacity: 1;
+  }
+  
+  @keyframes gradientMove {
+    0% {
+      background-position: 0%;
+    }
+    100% {
+      background-position: 100%;
+    }
+  }
+  
+  /* Accessibility Improvements */
+  .logo:focus-visible,
+  .brand-name:focus-visible,
+  .toggle-button:focus-visible {
+    outline: 3px solid var(--primary-color);
+    outline-offset: 3px;
+  }
+  
+  /* Responsive Design Adjustments */
+  @media (max-width: 900px) {
+    .header {
+      flex-direction: column;
+      padding: 15px 20px;
+      text-align: center;
+    }
+  
+    .branding {
+      flex-direction: column;
+      gap: 12px;
+    }
+  
+    .brand-name {
+      font-size: 1.8em;
+    }
+  
+    .logo {
+      height: 40px;
+    }
+  
+    .controls {
+      margin-top: 10px;
+      gap: 20px;
+    }
+  
+    .toggle-button {
+      padding: 12px 30px;
+      width: 100%;
+      font-size: 1rem;
+    }
+  }
+  
+  /* Animation on Scroll */
+  @media (prefers-reduced-motion: no-preference) {
+    .header {
+      animation: slideInFromTop 0.6s ease-in-out;
+    }
+  
+    @keyframes slideInFromTop {
+      from {
+        transform: translateY(-20%);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+  }

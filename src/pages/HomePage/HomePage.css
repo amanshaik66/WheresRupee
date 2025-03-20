@@ -1,0 +1,268 @@
+/* CSS Variables */
+:root {
+  /* Primary Colors */
+  --primary-color: #007bff;
+  --primary-dark: #0056b3;
+  --primary-light: #e9f4ff;
+
+  /* Light Mode Colors */
+  --light-bg: #f8f9fa;
+  --text-light: #343a40;
+  --input-border-color: #ced4da;
+  --placeholder-color: #cccccc;
+  --light-focus-bg: #f9fbff;
+  --disabled-bg: #6c757d;
+  --disabled-text: #eaeaea;
+
+  /* Error and Success */
+  --error-color: #dc3545;
+  --success-color: #28a745;
+
+  /* Dark Mode Colors */
+  --dark-bg: #1e1e2f; /* Darker, less saturated background */
+  --text-dark: #d1d5db; /* Soft light gray for readability */
+  --text-muted: #8e909a; /* Muted text for helper messages */
+  --dark-input-bg: #2c2c3e; /* Slightly lighter input field background */
+  --dark-placeholder-color: #626473; /* Placeholder color for dark mode */
+  --dark-border-color: #444; /* Borders in dark mode */
+  --dark-focus-bg: #34354a; /* Focused input background in dark mode */
+  --dark-error-bg: #4b1a1a; /* Subtle red tint for errors */
+  --dark-disabled-bg: #444851; /* Disabled background in dark mode */
+  --dark-disabled-text: #767a85; /* Disabled text in dark mode */
+}
+
+/* Base Styles for the Homepage */
+.homepage {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--light-bg);
+  color: var(--text-light);
+  font-family: 'Roboto', sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.dark .homepage {
+  background-color: var(--dark-bg);
+  color: var(--text-dark);
+}
+
+/* Header Banner Section */
+.header-banner {
+  width: 100%;
+  padding: 60px 20px;
+  text-align: center;
+  background-color: var(--primary-light);
+  color: var(--text-light);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+body.dark .header-banner {
+  background-color: var(--primary-dark);
+  color: var(--text-dark);
+}
+
+.banner-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.banner-tagline {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+/* Track Section */
+.track-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Input Wrapper */
+.input-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+}
+
+.serial-input {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 1.1rem;
+  color: var(--text-light);
+  background-color: var(--light-bg);
+  border: 1px solid var(--input-border-color);
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  outline: none;
+  transition: border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+body.dark .serial-input {
+  background-color: var(--dark-input-bg);
+  color: var(--text-dark);
+  border-color: var(--dark-border-color);
+}
+
+.serial-input:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.4);
+  background-color: var(--light-focus-bg);
+}
+
+body.dark .serial-input:focus {
+  background-color: var(--dark-focus-bg);
+  border-color: var(--primary-color);
+}
+
+/* Error State */
+.serial-input.error {
+  border-color: var(--error-color);
+  background-color: #ffe6e6;
+}
+
+body.dark .serial-input.error {
+  background-color: var(--dark-error-bg);
+}
+
+/* Serial Overlay */
+.serial-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 12px 16px;
+  font-size: 1.1rem;
+  color: var(--placeholder-color);
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  z-index: 1; /* Ensures the overlay is above the input field */
+}
+
+.overlay-char {
+  display: inline-block;
+  width: 1ch; /* Ensures equal spacing for characters */
+  text-align: center;
+  font-family: monospace;
+  color: var(--placeholder-color);
+  opacity: 0.6;
+  transition: opacity 0.3s ease, color 0.3s ease;
+}
+
+.overlay-char.filled {
+  color: var(--text-light); /* Matches entered text color */
+  opacity: 1;
+}
+
+.overlay-char.hidden {
+  visibility: hidden; /* Hides the overlay character for entered positions */
+}
+
+/* Helper Text */
+.helper-text {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+body.dark .helper-text {
+  color: var(--text-muted);
+}
+
+/* Error Message */
+.error-message {
+  font-size: 0.9rem;
+  color: var(--error-color);
+  margin-top: 5px;
+  line-height: 1.2;
+}
+
+body.dark .error-message {
+  color: var(--error-color);
+}
+
+/* Validation Icons */
+.validation-icon {
+  font-size: 1.5rem;
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.validation-icon.valid {
+  color: var(--success-color);
+}
+
+.validation-icon.invalid {
+  color: var(--error-color);
+}
+
+/* Button Styles */
+.track-button {
+  width: 100%;
+  max-width: 200px;
+  padding: 12px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #fff;
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.track-button:disabled {
+  background-color: var(--dark-disabled-bg);
+  color: var(--dark-disabled-text);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.track-button:hover:not(:disabled) {
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.track-button:focus-visible {
+  outline: 3px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .header-banner {
+    padding: 40px 15px;
+  }
+  .banner-title {
+    font-size: 2rem;
+  }
+  .banner-tagline {
+    font-size: 1rem;
+  }
+  .serial-input {
+    font-size: 1rem;
+    padding: 10px 14px;
+  }
+  .helper-text {
+    font-size: 0.85rem;
+  }
+  .error-message {
+    font-size: 0.85rem;
+  }
+  .track-button {
+    font-size: 1rem;
+    padding: 10px;
+  }
+}

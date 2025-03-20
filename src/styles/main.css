@@ -1,0 +1,43 @@
+/* Define CSS Variables for Light and Dark Modes */
+:root {
+    --primary-color: #007bff;
+    --primary-dark: #0056b3;
+    --primary-light: #e9f4ff;
+  
+    /* Light Mode Colors */
+    --light-bg: #f8f9fa;
+    --text-light: #343a40;
+    --input-border-color: #ced4da;
+    --placeholder-color: #cccccc;
+    --light-focus-bg: #f9fbff;
+    --disabled-bg: #6c757d;
+    --disabled-text: #eaeaea;
+  
+    /* Error and Success */
+    --error-color: #dc3545;
+    --success-color: #28a745;
+  
+    /* Dark Mode Colors */
+    --dark-bg: #1e1e2f;
+    --text-dark: #d1d5db;
+    --text-muted: #8e909a;
+    --dark-input-bg: #2c2c3e;
+    --dark-placeholder-color: #626473;
+    --dark-border-color: #444;
+    --dark-focus-bg: #34354a;
+    --dark-error-bg: #4b1a1a;
+    --dark-disabled-bg: #444851;
+    --dark-disabled-text: #767a85;
+  }
+  
+  /* Apply Light Mode by Default */
+  body {
+    background-color: var(--light-bg);
+    color: var(--text-light);
+  }
+  
+  /* Apply Dark Mode */
+  body.dark {
+    background-color: var(--dark-bg);
+    color: var(--text-dark);
+  }

@@ -1,0 +1,8 @@
+/* Import theming variables */
+@import './variables.css';
+
+/* Import global styles */
+@import './global.css';
+
+/* Import other necessary styles */
+@import './main.css';

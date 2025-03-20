@@ -1,0 +1,67 @@
+/* Map Container */
+.map-placeholder-container {
+  position: relative;
+  width: 100%; /* Ensure full width */
+  height: 400px; /* Maintain a fixed height for the map */
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.map-placeholder-container.dark {
+  background-color: #333333; /* Dark mode background */
+}
+
+.map-placeholder {
+  width: 100%;
+  height: 100%;
+}
+
+/* Message When No Markers Are Available */
+.no-markers-message {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.2rem;
+  color: #666666;
+  text-align: center;
+}
+
+.map-placeholder-container.dark .no-markers-message {
+  color: #cccccc; /* Adjust text color for dark mode */
+}
+
+/* Marker Styling */
+.map-marker {
+  width: 20px;
+  height: 20px;
+  background-color: #007aff; /* Default blue color for markers */
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+}
+
+/* Hover Effect for Markers */
+.map-marker:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.7); /* Enhanced hover effect */
+}
+
+/* Dark Mode Marker Styling */
+.map-placeholder-container.dark .map-marker {
+  background-color: #1e90ff; /* Slightly brighter blue for dark mode */
+  box-shadow: 0 0 8px rgba(0, 122, 255, 0.7);
+}
+
+/* Additional Enhancements */
+.map-marker.current-location {
+  background-color: #28a745; /* Green color for current location */
+  box-shadow: 0 0 8px rgba(40, 167, 69, 0.7);
+}
+
+.map-marker.previous-location {
+  background-color: #ffc107; /* Yellow for previous locations */
+  box-shadow: 0 0 8px rgba(255, 193, 7, 0.7);
+}
