@@ -1,0 +1,43 @@
+/* src/styles/variables.css */
+
+/* Theme Colors */
+:root {
+  --primary-color: #007bff;
+  --secondary-color: #0056b3;
+  --error-color: #ff4d4f;
+  --success-color: #28a745;
+  --warning-color: #ffc107;
+
+  /* Background Colors */
+  --light-bg: #f8f9fa;
+  --dark-bg: #2d2d2d;
+
+  /* Text Colors */
+  --text-light: #343a40;
+  --text-dark: #eaeaea;
+
+  /* Border Colors */
+  --border-light: #dddddd;
+  --border-dark: #444444;
+
+  /* Hover Effects */
+  --hover-light: rgba(0, 123, 255, 0.1);
+  --hover-dark: rgba(0, 123, 255, 0.2);
+
+  /* Shadows */
+  --shadow-light: rgba(0, 0, 0, 0.1);
+  --shadow-dark: rgba(0, 0, 0, 0.3);
+
+  /* Font Sizes */
+  --font-size-small: 0.9rem;
+  --font-size-medium: 1rem;
+  --font-size-large: 1.6rem;
+
+  /* Border Radius */
+  --border-radius: 4px;
+
+  /* Spacing */
+  --spacing-small: 8px;
+  --spacing-medium: 16px;
+  --spacing-large: 24px;
+}

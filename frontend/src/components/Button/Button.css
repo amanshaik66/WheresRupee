@@ -1,0 +1,200 @@
+/* WR\frontend\src\components\Button\Button.css */
+/* Base Button Styles */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  user-select: none;
+  outline: none;
+  line-height: 1.5;
+  text-align: center;
+}
+
+/* Size Variants */
+.button-small {
+  font-size: 0.85rem;
+  padding: 8px 16px;
+}
+
+.button-medium {
+  font-size: 1rem;
+  padding: 10px 20px;
+}
+
+.button-large {
+  font-size: 1.15rem;
+  padding: 12px 28px;
+}
+
+/* Core Variants */
+.button-primary {
+  background-color: var(--btn-primary, #007bff);
+  color: #fff;
+}
+
+.button-secondary {
+  background-color: var(--btn-secondary, #6c757d);
+  color: #fff;
+}
+
+.button-outline {
+  background-color: transparent;
+  border: 2px solid var(--btn-primary, #007bff);
+  color: var(--btn-primary, #007bff);
+}
+
+.button-danger {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.button-success {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.button-text {
+  background-color: transparent;
+  color: var(--btn-primary, #007bff);
+}
+
+/* Hover Effects */
+.button:not(.button-disabled):hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+}
+
+.button-primary:hover {
+  background-color: var(--btn-primary-hover, #0056b3);
+}
+
+.button-secondary:hover {
+  background-color: var(--btn-secondary-hover, #5a6268);
+}
+
+.button-outline:hover {
+  background-color: var(--btn-primary, #007bff);
+  color: #fff;
+}
+
+.button-danger:hover {
+  background-color: #c82333;
+}
+
+.button-success:hover {
+  background-color: #218838;
+}
+
+.button-text:hover {
+  text-decoration: underline;
+  color: var(--btn-primary-hover, #0056b3);
+}
+
+/* Disabled */
+.button-disabled {
+  background-color: var(--btn-disabled-bg, #e0e0e0);
+  color: var(--btn-disabled-text, #999);
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  box-shadow: none;
+}
+
+/* Spinner */
+.button-loading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top: 3px solid currentColor;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-text {
+  font-size: 0.9rem;
+  color: inherit;
+}
+
+/* Icon */
+.button-icon {
+  margin-right: 8px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.button-icon > * {
+  font-size: 1.2rem;
+}
+
+/* Accessibility: Focus Style */
+.button:focus-visible {
+  outline: 3px solid var(--btn-primary, #007bff);
+  outline-offset: 2px;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+}
+
+/* Dark Mode Support */
+.theme-dark .button-primary,
+.dark .button-primary {
+  background-color: #4dabf7;
+  color: #fff;
+}
+
+.theme-dark .button-outline,
+.dark .button-outline {
+  color: #4dabf7;
+  border-color: #4dabf7;
+}
+
+.theme-dark .button-outline:hover,
+.dark .button-outline:hover {
+  background-color: #4dabf7;
+  color: #fff;
+}
+
+/* Responsive Tweaks */
+@media (max-width: 768px) {
+  .button {
+    font-size: 0.95rem;
+    padding: 8px 16px;
+  }
+
+  .button-large {
+    font-size: 1rem;
+    padding: 10px 20px;
+  }
+
+  .spinner {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+/* Default Variables (override in :root or theme) */
+:root {
+  --btn-primary: #007bff;
+  --btn-primary-hover: #0056b3;
+  --btn-secondary: #6c757d;
+  --btn-secondary-hover: #5a6268;
+  --btn-disabled-bg: #e9ecef;
+  --btn-disabled-text: #999;
+}

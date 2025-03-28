@@ -1,0 +1,111 @@
+/* src/styles/global.css */
+
+/* Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: var(--font-size-medium);
+  color: var(--text-light);
+  background-color: var(--light-bg);
+  line-height: 1.6;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.dark {
+  background-color: var(--dark-bg);
+  color: var(--text-dark);
+}
+
+/* Links */
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--primary-color);
+}
+
+/* Buttons */
+button {
+  font-family: inherit;
+  font-size: var(--font-size-medium);
+  padding: var(--spacing-small) var(--spacing-medium);
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  background-color: var(--border-light);
+}
+
+button:hover:not(:disabled) {
+  transform: scale(1.05);
+}
+
+/* Forms */
+input, textarea {
+  font-family: inherit;
+  font-size: var(--font-size-medium);
+  padding: var(--spacing-small);
+  border: 1px solid var(--border-light);
+  border-radius: var(--border-radius);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus, textarea:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 5px var(--hover-light);
+  outline: none;
+}
+
+body.dark input, body.dark textarea {
+  background-color: var(--dark-bg);
+  color: var(--text-dark);
+  border-color: var(--border-dark);
+}
+
+/* Utility Classes */
+.text-center {
+  text-align: center;
+}
+
+.margin-top-medium {
+  margin-top: var(--spacing-medium);
+}
+
+.padding-large {
+  padding: var(--spacing-large);
+}
+
+/* Scrollbars (Modern Browsers) */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-light);
+  border-radius: var(--border-radius);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-color);
+}
+
+body.dark ::-webkit-scrollbar-thumb {
+  background: var(--border-dark);
+}
+
+body.dark ::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-color);
+}

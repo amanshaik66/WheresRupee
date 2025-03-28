@@ -1,0 +1,235 @@
+/* WR\frontend\src\pages\HomePage\HomePage.css */
+/* General Styles */
+.homepage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: 'Inter', sans-serif;
+    background-color: #f1f3f5;
+    color: #222;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.homepage.dark {
+    background-color: #0f0f0f;
+    color: #f0f0f0;
+}
+
+/* Header Banner */
+.header-banner {
+    width: 100%;
+    max-width: 800px;
+    padding: 60px 40px;
+    text-align: center;
+    background: linear-gradient(to bottom right, #ffffff, #f8f9fa);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    animation: fadeIn 0.4s ease;
+}
+
+.header-banner.dark {
+    background-color: #1e1e1e; /* fallback */
+    background: linear-gradient(to bottom right, #1e1e1e, #2a2a2a);
+    box-shadow: 0 8px 24px rgba(255, 255, 255, 0.05);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.banner-content {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.banner-title {
+    font-size: 2.75rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #0073e6;
+    letter-spacing: -0.5px;
+}
+
+.banner-tagline {
+    font-size: 1.25rem;
+    color: #666;
+    margin-bottom: 40px;
+    line-height: 1.6;
+}
+
+.header-banner.dark .banner-tagline {
+    color: #ccc;
+}
+
+/* Track Section */
+.track-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    width: 100%;
+}
+
+.input-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 360px;
+}
+
+.serial-input {
+    color: transparent;
+    text-shadow: 0 0 0 #000; /* keeps the caret visible while hiding text */
+    width: 100%;
+    padding: 14px 20px;
+    font-size: 1rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    outline: none;
+    background-color: #fafafa;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.serial-input:focus {
+    border-color: #0073e6;
+    box-shadow: 0 0 12px rgba(0, 115, 230, 0.2);
+}
+
+.serial-input.error {
+    border-color: #ff4d4d;
+}
+
+.header-banner.dark .serial-input {
+    background-color: #2c2c2c;
+    border-color: #444;
+    color: #fff;
+}
+
+.header-banner.dark .serial-input:focus {
+    border-color: #4dabf7;
+    box-shadow: 0 0 12px rgba(77, 171, 247, 0.2);
+}
+
+/* Dynamic Serial Overlay */
+.serial-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    pointer-events: none;
+    color: #999;
+    font-size: 1rem;
+    font-family: 'Courier New', monospace;
+}
+
+.overlay-char {
+    margin-right: 4px;
+}
+
+.overlay-char.hidden {
+    visibility: hidden;
+}
+
+/* Validation Icon */
+.validation-icon {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+    color: #28a745;
+    transition: color 0.3s ease;
+}
+
+.validation-icon.error {
+    color: #ff4d4d;
+}
+
+/* Helper and Error Messages */
+.helper-text {
+    font-size: 0.875rem;
+    color: #666;
+    margin-top: 8px;
+    font-weight: 500;
+}
+
+.header-banner.dark .helper-text {
+    color: #ccc;
+}
+
+.error-message {
+    font-size: 0.875rem;
+    color: #ff4d4d;
+    margin-top: 8px;
+    font-weight: 500;
+}
+
+/* Track Button */
+.track-button {
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #ffffff;
+    background-color: #0073e6;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    min-width: 160px;
+    align-self: center;
+}
+
+.track-button:disabled {
+    background-color: #b0b0b0;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.track-button.loading {
+    background-color: #0073e6;
+    opacity: 0.7;
+}
+
+.track-button:not(:disabled):hover {
+    background-color: #005bb5;
+    transform: translateY(-1px);
+}
+
+.header-banner.dark .track-button {
+    background-color: #4dabf7;
+}
+
+.header-banner.dark .track-button:disabled {
+    background-color: #444;
+}
+
+.history-wrapper {
+    width: 100%;
+    max-width: 720px;
+    margin-top: 40px;
+  }
+  
+/* Accessibility */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
