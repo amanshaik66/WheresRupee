@@ -1,5 +1,6 @@
 // WR\backend\controllers\trackController.js
-const db = require('../config/db');
+const Note = require('../models/Note');
+const Location = require('../models/Location');
 
 exports.trackNote = async (req, res) => {
   const { serialNumber, latitude, longitude, accuracy } = req.body;
@@ -10,82 +11,68 @@ exports.trackNote = async (req, res) => {
     typeof longitude !== 'number' ||
     typeof accuracy !== 'number'
   ) {
-    return res.status(400).send({ message: 'Invalid input data' });
+    return res.status(400).json({ message: 'Invalid input data' });
   }
 
   try {
     // ✅ 1. Check if note exists
-    let [notes] = await db.query(
-      'SELECT id FROM notes WHERE serialNumber = ?',
-      [serialNumber]
-    );
+    let note = await Note.findOne({ serialNumber });
 
-    let noteId;
-
-    if (notes.length === 0) {
-      // ✅ 1a. Insert new note
-      const [result] = await db.query(
-        'INSERT INTO notes (serialNumber) VALUES (?)',
-        [serialNumber]
-      );
-      noteId = result.insertId;
-    } else {
-      noteId = notes[0].id;
+    if (!note) {
+      // ✅ 1a. Create new note
+      note = await Note.create({ serialNumber });
     }
 
-    // ✅ [ADDED] 2. Check if this location was already logged in the last 5 minutes
-    const [recent] = await db.query(
-      `SELECT id FROM locations
-       WHERE noteId = ? AND latitude = ? AND longitude = ? AND accuracy = ?
-       AND timestamp > NOW() - INTERVAL 5 MINUTE`,
-      [noteId, latitude, longitude, accuracy]
-    );
+    // ✅ 2. Check for duplicate location in last 5 minutes
+    const fiveMinutesAgo = new Date(Date.now() - 5 * 60 * 1000);
 
-    if (recent.length > 0) {
-      return res.status(409).send({
+    const recentDuplicate = await Location.findOne({
+      note: note._id,
+      latitude,
+      longitude,
+      accuracy,
+      timestamp: { $gt: fiveMinutesAgo }
+    });
+
+    if (recentDuplicate) {
+      return res.status(409).json({
         message: 'Duplicate location already logged within the last 5 minutes.',
         skipped: true,
         data: []
       });
     }
 
-    // ✅ 3. Insert location for the note
-    await db.query(
-      'INSERT IGNORE INTO locations (noteId, latitude, longitude, accuracy) VALUES (?, ?, ?, ?)',
-      [noteId, latitude, longitude, accuracy]
-    );
+    // ✅ 3. Insert new location
+    await Location.create({
+      note: note._id,
+      latitude,
+      longitude,
+      accuracy
+    });
 
     // ✅ 4. Fetch all tracking history for the note
-    const [history] = await db.query(
-      `SELECT l.id, n.serialNumber, l.latitude, l.longitude, l.accuracy, l.timestamp
-       FROM locations l
-       JOIN notes n ON l.noteId = n.id
-       WHERE l.noteId = ?
-       ORDER BY l.timestamp DESC`,
-      [noteId]
-    );
+    const history = await Location.find({ note: note._id })
+      .sort({ timestamp: -1 })
+      .select('latitude longitude accuracy timestamp')
+      .lean();
 
-    res.status(201).send({
+    const responseData = history.map(entry => ({
+      serialNumber,
+      ...entry
+    }));
+
+    return res.status(201).json({
       message: 'Tracking data recorded successfully.',
-      data: history
+      data: responseData
     });
 
+  } catch (error) {
+    console.error('MongoDB error:', error);
 
-} catch (error) {
-  console.error('Database error:', error);
-
-  if (error.code === 'ER_DUP_ENTRY') {
-    return res.status(409).send({
-      message: 'This exact tracking data was already submitted.',
-      errorCode: 'DUPLICATE_TRACKING'
+    return res.status(500).json({
+      message: 'Unexpected server error.',
+      errorCode: 'SERVER_ERROR',
+      error: error.message
     });
   }
-
-  res.status(500).send({
-    message: 'Unexpected server error.',
-    errorCode: 'SERVER_ERROR',
-    error: error.message
-  });
-}
-
 };

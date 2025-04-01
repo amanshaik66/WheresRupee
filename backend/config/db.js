@@ -1,15 +1,18 @@
 //WR\backend\config\db.js
-const mysql = require('mysql2');
-require('dotenv').config(); // ✅ This loads .env variables
+const mongoose = require('mongoose');
+require('dotenv').config();
 
-const pool = mysql.createPool({
-  host: process.env.DB_HOST || 'localhost',
-  user: process.env.DB_USER || 'root',
-  password: process.env.DB_PASS || 'WheresG2024',
-  database: process.env.DB_NAME || 'currency_tracker',
-  waitForConnections: true,
-  connectionLimit: 10,
-  queueLimit: 0
-});
+const connectDB = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log('MongoDB connected successfully');
+  } catch (error) {
+    console.error('MongoDB connection error:', error);
+    process.exit(1);
+  }
+};
 
-module.exports = pool.promise();
+module.exports = connectDB;
