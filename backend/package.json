@@ -1,8 +1,10 @@
 {
-  "name": "backend",
+  "name": "wheresrupee-backend",
   "version": "1.0.0",
-  "main": "index.js",
+  "type": "module",
+  "main": "app.js",
   "scripts": {
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -11,14 +13,12 @@
   "description": "",
   "dependencies": {
     "cors": "^2.8.5",
-    "docker": "^1.0.0",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "express-rate-limit": "^7.5.0",
     "helmet": "^8.1.0",
-    "mongoose": "^8.13.1",
+    "mongoose": "^7.0.0",
     "mysql2": "^3.14.0",
-    "railway": "^2.0.17",
-    "sqlite3": "^5.1.7"
+    "railway": "^2.0.17"
   }
 }

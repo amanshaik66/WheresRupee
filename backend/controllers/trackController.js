@@ -1,8 +1,8 @@
 // WR\backend\controllers\trackController.js
-const Note = require('../models/Note');
-const Location = require('../models/Location');
+import Note from '../models/Note.js';
+import Location from '../models/Location.js';
 
-exports.trackNote = async (req, res) => {
+export const trackNote = async (req, res) => {
   const { serialNumber, latitude, longitude, accuracy } = req.body;
 
   if (

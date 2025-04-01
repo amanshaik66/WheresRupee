@@ -1,9 +1,12 @@
 //WR\backend\app.js
-const express = require('express');
-const cors = require('cors');
-const helmet = require('helmet');
-const mongoose = require('mongoose');
-require('dotenv').config(); // for .env MongoDB URI
+import express from 'express';
+import cors from 'cors';
+import helmet from 'helmet';
+import mongoose from 'mongoose';
+import dotenv from 'dotenv'; // for .env MongoDB URI
+import noteRoutes from './routes/noteRoutes.js'; // Add .js extension for ES modules
+
+dotenv.config(); // Load environment variables
 
 const app = express();
 
@@ -21,7 +24,6 @@ mongoose.connection.once('open', () => console.log('✅ Connected to MongoDB'));
 mongoose.connection.on('error', (err) => console.error('❌ MongoDB Error:', err));
 
 // ✅ Routes
-const noteRoutes = require('./routes/noteRoutes');
 app.use('/api/notes', noteRoutes);
 
 const PORT = process.env.PORT || 8080;
