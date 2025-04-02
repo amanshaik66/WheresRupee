@@ -8,8 +8,9 @@ import noteRoutes from './routes/noteRoutes.js'; // Add .js extension for ES mod
 
 
 const allowedOrigins = [
-  'https://www.wheresrupee.com',          // ✅ your frontend domain
-  'https://wheresrupee.onrender.com'      // optional fallback
+  'https://www.wheresrupee.com',
+  'https://wheresrupee.com',
+  'https://wheresrupee.onrender.com',
 ];
 
 dotenv.config(); // Load environment variables
@@ -18,9 +19,16 @@ const app = express();
 
 app.use(helmet());
 app.use(cors({
-  origin: allowedOrigins,
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   methods: ['GET', 'POST'],
-  credentials: true
+  allowedHeaders: ['Content-Type'],
+  credentials: true,
 }));
 app.use(express.json());
 
