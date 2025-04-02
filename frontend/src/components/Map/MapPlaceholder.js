@@ -28,8 +28,8 @@ const MapPlaceholder = ({ data }) => {
         .setPopup(
           new mapboxgl.Popup({ offset: 25 }).setHTML(`
             <strong>Entry ${data.length - index}</strong><br/>
-            Lat: ${entry.latitude.toFixed(5)}<br/>
-            Lng: ${entry.longitude.toFixed(5)}<br/>
+            Lat: ${(entry.latitude + 0.0005).toFixed(3)}<br/>
+            Lng: ${(entry.longitude + 0.0005).toFixed(3)}<br/>
             Accuracy: ±${entry.accuracy}m<br/>
             Time: ${new Date(entry.timestamp).toLocaleString()}
           `)

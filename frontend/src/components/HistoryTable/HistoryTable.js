@@ -72,7 +72,9 @@ const HistoryTable = ({ data }) => {
       <tbody>
         {cityData.map((entry, index) => {
           const acc = Number(entry.accuracy);
-          const mapUrl = `https://www.google.com/maps?q=${entry.latitude},${entry.longitude}`;
+          const roundedLat = (entry.latitude + 0.0005).toFixed(3);
+          const roundedLng = (entry.longitude + 0.0005).toFixed(3);
+          const mapUrl = `https://www.google.com/maps?q=${roundedLat},${roundedLng}`;
           const thumbnailUrl = `https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/pin-l+ff0000(${entry.longitude},${entry.latitude})/${entry.longitude},${entry.latitude},14/200x120?access_token=${mapboxToken}`;
 
           return (
