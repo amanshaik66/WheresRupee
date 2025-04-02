@@ -24,7 +24,8 @@ export async function trackNoteWithLocation(serialNumber, latitude, longitude, a
       });
   
       const raw = await response.text();
-  
+      console.log('Raw server response:', raw); // Log raw response for debugging
+
       let result;
       try {
         result = JSON.parse(raw);

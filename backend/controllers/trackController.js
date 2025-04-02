@@ -68,6 +68,10 @@ export const trackNote = async (req, res) => {
       message: 'Tracking data recorded successfully.',
       data: responseData
     });
+    console.log('Response sent to client:', {
+      message: 'Tracking data recorded successfully.',
+      data: responseData,
+    });
 
   } catch (error) {
     console.error('MongoDB error:', error);
