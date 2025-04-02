@@ -4,6 +4,9 @@ import Location from '../models/Location.js';
 
 export const trackNote = async (req, res) => {
   const { serialNumber, latitude, longitude, accuracy } = req.body;
+  
+  // Log the incoming request body
+  console.log('Incoming request body:', req.body);
 
   if (
     !serialNumber || typeof serialNumber !== 'string' ||
