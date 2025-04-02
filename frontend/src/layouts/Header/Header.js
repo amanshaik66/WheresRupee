@@ -17,11 +17,14 @@ function Header() {
   return (
     <header className={`header ${isDarkMode ? 'theme-dark' : 'theme-light'} ${isScrolled ? 'scrolled' : ''}`}>
       <div className="branding">
-        <img
-          //src="/assets/images/WG-LOGO.svg"
-          alt=" " // Added meaningful alt text for accessibility
-          className="logo"
-        />
+      <img
+        src="/favicon/favicon.svg" // or use /favicon/favicon-96x96.png if you prefer PNG
+        alt="WheresRupee logo"
+        className="logo"
+        width={32}
+        height={32}
+      />
+
         <span className="brand-name">WheresRupee</span>
       </div>
       <div className="controls">
