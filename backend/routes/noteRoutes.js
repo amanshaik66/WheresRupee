@@ -7,7 +7,7 @@ const router = express.Router();
 router.post('/track', trackNote);
 
 router.get('/track', (req, res) => {
-  res.send('This route only accepts POST requests for tracking.');
+  res.status(405).json({ message: 'Only POST requests are allowed on this route.' });
 });
 
 export default router; // Use ES module export

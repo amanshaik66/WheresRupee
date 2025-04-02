@@ -10,7 +10,8 @@
  */
 export async function trackNoteWithLocation(serialNumber, latitude, longitude, accuracy) {
     try {
-      const response = await fetch('/api/notes/track', {
+        const BASE_URL = process.env.REACT_APP_BACKEND_URL.replace(/\/+$/, ''); // remove trailing slash
+        const response = await fetch(`${BASE_URL}/api/notes/track`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -27,6 +28,10 @@ export async function trackNoteWithLocation(serialNumber, latitude, longitude, a
       console.log("Response status:", response.status);
       const raw = await response.text();
       console.log('Raw server response:', raw); // Log raw response for debugging
+
+      if (!raw || raw.trim().length === 0) {
+        throw new Error('Empty response from server');
+      }
 
       let result;
       try {
