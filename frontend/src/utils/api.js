@@ -22,6 +22,8 @@ export async function trackNoteWithLocation(serialNumber, latitude, longitude, a
           accuracy,
         }),
       });
+      console.log("Calling backend:", `${process.env.REACT_APP_BACKEND_URL}/api/notes/track`);
+
   
       const raw = await response.text();
       console.log('Raw server response:', raw); // Log raw response for debugging
