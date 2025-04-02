@@ -64,7 +64,7 @@ const HistoryTable = ({ data }) => {
         <tr>
           <th>#</th>
           <th>City</th>
-          <th>Accuracy (m)</th>
+          <th>Accuracy(m)</th>
           <th>Timestamp</th>
           <th>Map</th>
         </tr>
