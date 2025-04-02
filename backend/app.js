@@ -6,12 +6,22 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv'; // for .env MongoDB URI
 import noteRoutes from './routes/noteRoutes.js'; // Add .js extension for ES modules
 
+
+const allowedOrigins = [
+  'https://www.wheresrupee.com',          // ✅ your frontend domain
+  'https://wheresrupee.onrender.com'      // optional fallback
+];
+
 dotenv.config(); // Load environment variables
 
 const app = express();
 
 app.use(helmet());
-app.use(cors());
+app.use(cors({
+  origin: allowedOrigins,
+  methods: ['GET', 'POST'],
+  credentials: true
+}));
 app.use(express.json());
 
 // ✅ MongoDB connection
