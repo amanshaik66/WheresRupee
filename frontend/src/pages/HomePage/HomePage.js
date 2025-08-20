@@ -86,7 +86,7 @@ function HomePage() {
       <section className={`header-banner ${isDarkMode ? 'dark' : 'light'}`}>
         <div className="banner-content">
           <h1 className="banner-title">{GENERIC.APP_NAME}</h1>
-          <p className="banner-tagline">Track your currency note with its serial number.</p>
+          <p className="banner-tagline">Track your currency bill with its serial number.</p>
           <div className="track-section">
             <label htmlFor="serial-input" className="sr-only">
               {ARIA_LABELS.INPUT}
