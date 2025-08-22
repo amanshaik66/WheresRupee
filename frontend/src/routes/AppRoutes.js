@@ -2,8 +2,7 @@
 import React, { Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import HomePage from '../pages/HomePage/HomePage'; // Lazy-loaded
-import TrackingPage from '../pages/TrackingPage/TrackingPage';
-import Dashboard from '../pages/Dashboard/Dashboard';
+import TrackingPage from '../pages/TrackingPage/TrackingPage'; 
 import '../routes/AppRoutes.css'; // Optional route-specific styles
 
 const AppRoutes = () => {
@@ -17,14 +16,11 @@ const AppRoutes = () => {
       }
     >
       <Routes>
-  {/* Home page route */}
-  <Route path="/" element={<HomePage />} />
-
-  {/* Tracking page route */}
-  <Route path="/track" element={<TrackingPage />} />
-
-  {/* Dashboard page route */}
-  <Route path="/dashboard" element={<Dashboard />} />
+      {/* Home page route */}
+      <Route path="/" element={<HomePage />} />
+      
+      {/* Tracking page route */}
+      <Route path="/track" element={<TrackingPage />} />
     </Routes>
     </Suspense>
   );
